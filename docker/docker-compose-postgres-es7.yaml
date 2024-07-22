@@ -4,6 +4,7 @@ services:
   conductor-server:
     environment:
       - CONFIG_PROP=config-postgres-es7.properties
+      - DB_URL_DEV=my_test_db_url_george
     image: conductor:server
     container_name: conductor-server
     build:
@@ -12,8 +13,8 @@ services:
     networks:
       - internal
     ports:
-      - 8080:8080
-      - 5000:5000
+      - 8001:8080
+      - 5001:5000
     healthcheck:
       test: [ "CMD", "curl","-I" ,"-XGET", "http://localhost:8080/health" ]
       interval: 60s
@@ -39,7 +40,7 @@ services:
       - POSTGRES_USER=conductor
       - POSTGRES_PASSWORD=conductor
     volumes:
-      - pgdata-conductor:/var/lib/postgresql/data
+      - ./../../conductor-data/pg-data:/var/lib/postgresql/data
     networks:
       - internal
     ports:
@@ -62,7 +63,7 @@ services:
       - xpack.security.enabled=false
       - discovery.type=single-node
     volumes:
-      - esdata-conductor:/usr/share/elasticsearch/data
+      - ./../../conductor-data/es-data:/usr/share/elasticsearch/data
     networks:
       - internal
     ports:

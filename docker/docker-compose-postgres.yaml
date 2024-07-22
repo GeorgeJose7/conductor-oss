@@ -12,10 +12,10 @@ services:
     networks:
       - internal
     ports:
-      - 8080:8080
-      - 5000:5000
+      - 8000:8080
+      - 5001:5000
     healthcheck:
-      test: [ "CMD", "curl","-I" ,"-XGET", "http://localhost:8080/health" ]
+      test: [ "CMD", "curl","-I" ,"-XGET", "http://localhost:8000/health" ]
       interval: 60s
       timeout: 30s
       retries: 12
@@ -36,7 +36,7 @@ services:
       - POSTGRES_USER=conductor
       - POSTGRES_PASSWORD=conductor
     volumes:
-      - pgdata-conductor:/var/lib/postgresql/data
+      - ./../../conductor-data:/var/lib/postgresql/data
     networks:
       - internal
     ports:
@@ -52,9 +52,7 @@ services:
         max-size: "1k"
         max-file: "3"
 
-volumes:
-  pgdata-conductor:
-    driver: local
+
 
 networks:
   internal:

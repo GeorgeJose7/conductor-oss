@@ -24,6 +24,8 @@ nginx
 cd /app/libs
 echo "Property file: $CONFIG_PROP"
 echo $CONFIG_PROP
+echo "the Dev DB URL should be:  $DB_URL_DEV"
+echo $DB_URL_DEV
 export config_file=
 
 if [ -z "$CONFIG_PROP" ];

@@ -11,7 +11,7 @@
  *  specific language governing permissions and limitations under the License.
  */
 
-plugins {
+/*plugins {
     id "com.gradle.enterprise" version "3.11.1"
 }
 
@@ -24,6 +24,14 @@ gradleEnterprise {
         buildScanPublished { scan ->
             file("buildscan.log") << "${new Date()} - ${scan.buildScanUri}\n"
         }
+    }
+}*/
+
+pluginManagement {
+    repositories {
+        maven { url 'https://repo.spring.io/release' }
+        mavenCentral()
+        gradlePluginPortal()
     }
 }
 
